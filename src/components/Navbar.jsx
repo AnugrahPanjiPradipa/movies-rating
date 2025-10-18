@@ -4,7 +4,7 @@ import movie from '../assets/movie.png';
 const Navbar = () => {
   return (
     <nav className="navbar bg-dark py-3">
-      <div className="container-fluid justify-content-between">
+      <div className="container-fluid d-flex flex-column gap-1 pt-0 flex-md-row align-items-center justify-content-between">
         <a className="navbar-brand px-3 text-light d-flex align-items-center gap-1">
           <img
             src={movie}
