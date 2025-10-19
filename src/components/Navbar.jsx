@@ -3,30 +3,23 @@ import movie from '../assets/movie.png';
 
 const Navbar = () => {
   return (
-    <nav className="navbar bg-dark py-3">
-      <div className="container-fluid d-flex flex-column gap-1 pt-0 flex-md-row align-items-center justify-content-between">
-        <a className="navbar-brand px-3 text-light d-flex align-items-center gap-1">
-          <img
-            src={movie}
-            alt="movie icon"
-            width={48}
-            height={48}
-          />
-          <span className="fs-4 fw-semibold">MoviesRate</span>
-        </a>
-        <form
-          className="d-flex mx-auto"
-          role="search"
-          style={{ width: '50%' }}
-        >
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-        </form>
+    <nav className="bg-gray-800 border-b border-gray-700 px-6 py-3 flex items-center">
+      <div className="flex items-center gap-2 flex-shrink-0">
+        <img
+          src={movie}
+          alt="Movie Logo"
+          className="h-8 w-8"
+        />
+        <span className="text-normal md:text-2xl font-medium text-amber-50 whitespace-nowrap">Movies Rating</span>
       </div>
+      <div className="flex flex-1 justify-center pl-4 md:pl-0">
+        <input
+          type="text"
+          placeholder="Search..."
+          className="md:w-1/3 border border-gray-600 bg-amber-50 text-black rounded-xl px-3 py-1 focus:outline-none focus:ring-2 focus:ring-amber-400"
+        />
+      </div>
+      <div className="flex-shrink-0 md:w-[170px] w-0" />
     </nav>
   );
 };
