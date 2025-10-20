@@ -4,9 +4,11 @@ import Body from './components/Body';
 
 const App = () => {
   return (
-    <div>
+    <div className="flex flex-col h-screen bg-black overflow-hidden">
       <Navbar />
-      <Body />
+      <div className="flex-grow min-h-0">
+        <Body />
+      </div>
     </div>
   );
 };

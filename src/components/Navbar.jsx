@@ -1,10 +1,10 @@
 import React from 'react';
-import movie from '../assets/movie.png';
+import movie from '../assets/img/movie.png';
 
 const Navbar = () => {
   return (
     <nav className="bg-gray-800 border-b border-gray-700 px-6 py-3 flex items-center">
-      <div className="flex items-center gap-2 flex-shrink-0">
+      <div className="flex items-center gap-2">
         <img
           src={movie}
           alt="Movie Logo"
