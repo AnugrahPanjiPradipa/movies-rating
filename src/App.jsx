@@ -8,15 +8,16 @@ const App = () => {
   const [page, setPage] = React.useState(1);
   const [hasMore, setHasMore] = React.useState(true);
   const [search, setSearch] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState(search);
 
   const APIKEY = import.meta.env.VITE_APP_TMDB_API_KEY;
 
   const fetchFilms = useCallback(async () => {
     try {
-      const endpoint = search ? 'search' : 'discover';
+      const endpoint = debouncedSearch ? 'search' : 'discover';
       const response = await axios.get(`https://api.themoviedb.org/3/${endpoint}/movie?language=en-US&sort_by=popularity.desc&page=${page}&api_key=${APIKEY}`, {
         params: {
-          query: search || undefined,
+          query: debouncedSearch || undefined,
         },
       });
 
@@ -30,17 +31,27 @@ const App = () => {
     } catch (error) {
       console.error('Error fetching film data:', error);
     }
-  }, [page, APIKEY, search]);
+  }, [page, APIKEY, debouncedSearch]);
 
   useEffect(() => {
     fetchFilms();
   }, [fetchFilms]);
 
   useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search]);
+
+  useEffect(() => {
     setFilms([]);
     setPage(1);
     setHasMore(true);
-  }, [search]);
+  }, [debouncedSearch]);
 
   return (
     <div className="flex flex-col h-screen bg-black overflow-hidden">
