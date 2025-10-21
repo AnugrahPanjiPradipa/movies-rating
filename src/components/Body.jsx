@@ -1,31 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { ThreeDot } from 'react-loading-indicators';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-const Body = () => {
-  const [films, setFilms] = React.useState([]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-
-  const APIKEY = import.meta.env.VITE_APP_TMDB_API_KEY;
-
-  useEffect(() => {
-    const fetchFilms = async () => {
-      try {
-        const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?language=en-US&sort_by=popularity.desc&page=${page}&api_key=${APIKEY}`);
-        setFilms((prev) => [...prev, ...response.data.results]);
-
-        if (response.data.results.length === 0) {
-          setHasMore(false);
-        }
-      } catch (error) {
-        console.error('Error fetching film data:', error);
-      }
-    };
-    fetchFilms();
-  }, [page, APIKEY]);
-
+const Body = ({films, hasMore, setPage}) => {
   return (
     <div className="flex h-full w-full text-amber-50 justify-center items-center">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-1 p-4 md:w-1/2 w-full h-full justify-center items-center">
@@ -41,9 +17,7 @@ const Body = () => {
               <div className="flex justify-center items-center h-20">
                 <ThreeDot
                   color="#32cd32"
-                  size="medium"
-                  text=""
-                  textColor=""
+                  size="small"
                 />
               </div>
             }
@@ -55,8 +29,6 @@ const Body = () => {
                   <ThreeDot
                     color="#32cd32"
                     size="medium"
-                    text=""
-                    textColor=""
                   />
                 </div>
               ) : (
