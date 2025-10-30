@@ -42,7 +42,7 @@ const FilmList = ({ films, hasMore, setPage, setSelectedFilm }) => {
                   className="w-16 h-24 rounded-md shadow"
                 />
                 <div className="flex flex-col">
-                  <h5>{item.title}</h5>
+                  <h5 className='font-bold'>{item.title}</h5>
                   📅{new Date(item.release_date).getFullYear()}
                   <div className="pt-2">
                     <p className="text-sm text-gray-600">⭐ {Math.round(item.vote_average)} / 10</p>

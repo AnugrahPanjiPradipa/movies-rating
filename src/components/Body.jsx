@@ -12,7 +12,10 @@ const Body = ({ films, hasMore, setPage, selectedFilm, setSelectedFilm }) => {
           setSelectedFilm={setSelectedFilm}
         />
 
-        <FilmDesc selectedFilm={selectedFilm} />
+        <FilmDesc
+          selectedFilm={selectedFilm}
+          setSelectedFilm={setSelectedFilm}
+        />
       </div>
     </div>
   );
