@@ -4,11 +4,12 @@ import Body from './components/Body';
 import axios from 'axios';
 
 const App = () => {
-  const [films, setFilms] = React.useState([]);
-  const [page, setPage] = React.useState(1);
-  const [hasMore, setHasMore] = React.useState(true);
+  const [films, setFilms] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState(search);
+  const [selectedFilm, setSelectedFilm] = useState(null);
 
   const APIKEY = import.meta.env.VITE_APP_TMDB_API_KEY;
 
@@ -51,6 +52,7 @@ const App = () => {
     setFilms([]);
     setPage(1);
     setHasMore(true);
+    setSelectedFilm(null);
   }, [debouncedSearch]);
 
   return (
@@ -58,12 +60,15 @@ const App = () => {
       <Navbar
         search={search}
         setSearch={setSearch}
+        films={films}
       />
       <div className="flex-grow min-h-0">
         <Body
           films={films}
           setPage={setPage}
           hasMore={hasMore}
+          selectedFilm={selectedFilm}
+          setSelectedFilm={setSelectedFilm}
         />
       </div>
     </div>
