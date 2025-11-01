@@ -10,6 +10,10 @@ const App = () => {
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState(search);
   const [selectedFilm, setSelectedFilm] = useState(null);
+  const [favorites, setFavorites] = useState(() => {
+    const savedFavorites = localStorage.getItem('favorites-movies');
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+  });
 
   const APIKEY = import.meta.env.VITE_APP_TMDB_API_KEY;
 
@@ -55,6 +59,20 @@ const App = () => {
     setSelectedFilm(null);
   }, [debouncedSearch]);
 
+  function handleAddFav(film) {
+    if (!favorites.some((fav) => fav.id === film.id)) {
+      const newFav = [...favorites, film];
+      setFavorites(newFav);
+      localStorage.setItem('favorites-movie', JSON.stringify(newFav));
+    }
+  }
+
+  function handleDeleteFav(filmID) {
+    const newFav = favorites.filter((film) => film.id !== filmID);
+    setFavorites(newFav);
+    localStorage.setItem('favorites-movie', JSON.stringify(newFav));
+  }
+
   return (
     <div className="flex flex-col h-screen bg-black overflow-hidden">
       <Navbar
@@ -62,13 +80,16 @@ const App = () => {
         setSearch={setSearch}
         films={films}
       />
-      <div className="flex-grow min-h-0">
+      <div className="grow min-h-0">
         <Body
           films={films}
           setPage={setPage}
           hasMore={hasMore}
           selectedFilm={selectedFilm}
           setSelectedFilm={setSelectedFilm}
+          addFav={handleAddFav}
+          deleteFav={handleDeleteFav}
+          favorites={favorites}
         />
       </div>
     </div>
