@@ -23,7 +23,7 @@ const Navbar = ({ search, setSearch, films }) => {
           className="w-[150px] md:w-1/3 border border-gray-600 bg-amber-50 text-black rounded-xl px-3 py-1 focus:outline-none focus:ring-2 focus:ring-amber-400"
         />
       </div>
-      <div className="md:w-[170px] w-[40px]">
+      <div className="md:w-[170px] w-10">
         <NumResults films={films} />
       </div>
     </nav>

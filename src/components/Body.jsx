@@ -10,6 +10,7 @@ const Body = ({ films, hasMore, setPage, selectedFilm, setSelectedFilm, addFav, 
           hasMore={hasMore}
           setPage={setPage}
           setSelectedFilm={setSelectedFilm}
+          favorites={favorites}
         />
 
         <FilmDesc

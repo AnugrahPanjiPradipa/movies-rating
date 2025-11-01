@@ -11,7 +11,7 @@ const App = () => {
   const [debouncedSearch, setDebouncedSearch] = useState(search);
   const [selectedFilm, setSelectedFilm] = useState(null);
   const [favorites, setFavorites] = useState(() => {
-    const savedFavorites = localStorage.getItem('favorites-movies');
+    const savedFavorites = localStorage.getItem('favorites-movie');
     return savedFavorites ? JSON.parse(savedFavorites) : [];
   });
 
