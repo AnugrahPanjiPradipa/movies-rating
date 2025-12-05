@@ -1,8 +1,17 @@
 import Plus from '../assets/img/plus.svg';
-import Check from '../assets/img/check.svg';
+import Remove from '../assets/img/close.svg';
+import { useEffect } from 'react';
 
 const SelectedFilms = ({ selectedFilm, setSelectedFilm, deleteFav, addFav, favorites }) => {
   const isFavorite = selectedFilm ? favorites.some((fav) => fav.id === selectedFilm.id) : false;
+
+  useEffect(() => {
+    document.title = `Movie | ${selectedFilm.title}`;
+
+    return function () {
+      document.title = 'Movies Rating';
+    };
+  });
 
   function handleClose() {
     setSelectedFilm(null);
@@ -28,7 +37,7 @@ const SelectedFilms = ({ selectedFilm, setSelectedFilm, deleteFav, addFav, favor
           <div className="flex flex-col gap-4">
             <h1 className="font-bold text-2xl px-4 text-black">{selectedFilm.title}</h1>
             <p className="text-black px-4">{selectedFilm.release_date}</p>
-            <p className="text-black px-4">Rating: ⭐ {Math.round(selectedFilm.vote_average)} / 10</p>
+            <p className="text-black px-4">Rating: ⭐ {selectedFilm.vote_average.toFixed(1)} / 10</p>
           </div>
         </div>
         <p className="text-black px-4 py-4 text-center">{selectedFilm.overview}</p>
@@ -38,7 +47,7 @@ const SelectedFilms = ({ selectedFilm, setSelectedFilm, deleteFav, addFav, favor
             onClick={() => deleteFav(selectedFilm.id)}
           >
             <img
-              src={Plus}
+              src={Remove}
               alt="Plus"
               className="w-5 h-5"
             />
@@ -50,7 +59,7 @@ const SelectedFilms = ({ selectedFilm, setSelectedFilm, deleteFav, addFav, favor
             onClick={() => addFav(selectedFilm)}
           >
             <img
-              src={Check}
+              src={Plus}
               alt="Check"
               className="w-5 h-5"
             />

@@ -45,7 +45,7 @@ const FilmList = ({ films, hasMore, setPage, setSelectedFilm }) => {
                   <h5 className='font-bold'>{item.title}</h5>
                   📅{new Date(item.release_date).getFullYear()}
                   <div className="pt-2">
-                    <p className="text-sm text-gray-600">⭐ {Math.round(item.vote_average)} / 10</p>
+                    <p className="text-sm text-gray-600">⭐ {item.vote_average.toFixed(1)} / 10</p>
                   </div>
                 </div>
               </li>

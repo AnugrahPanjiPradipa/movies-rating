@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Body from './components/Body';
+import Grain from './assets/videos/bg-film.mp4';
 import axios from 'axios';
 
 const App = () => {
@@ -74,7 +75,19 @@ const App = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-black overflow-hidden">
+    <div className="flex flex-col h-screen overflow-hidden">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="fixed -z-10 w-full h-full object-cover"
+      >
+        <source
+          src={Grain}
+          type="video/mp4"
+        />
+      </video>
       <Navbar
         search={search}
         setSearch={setSearch}
