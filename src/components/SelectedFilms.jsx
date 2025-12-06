@@ -1,5 +1,6 @@
 import Plus from '../assets/img/plus.svg';
 import Remove from '../assets/img/close.svg';
+import { Heart, Trash2 } from 'lucide-react';
 import { useEffect } from 'react';
 
 const SelectedFilms = ({ selectedFilm, setSelectedFilm, deleteFav, addFav, favorites }) => {
@@ -43,27 +44,19 @@ const SelectedFilms = ({ selectedFilm, setSelectedFilm, deleteFav, addFav, favor
         <p className="text-black px-4 py-4 text-center">{selectedFilm.overview}</p>
         {isFavorite ? (
           <button
-            className="bg-red-500 p-2 rounded-2xl flex flex-row items-center gap-2 hover:bg-red-600 hover:scale-105 duration-150"
             onClick={() => deleteFav(selectedFilm.id)}
+            className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-all active:scale-95"
           >
-            <img
-              src={Remove}
-              alt="Plus"
-              className="w-5 h-5"
-            />
-            Delete from favorites
+            <Trash2 size={18} />
+            <span className="font-medium">Remove Favorite</span>
           </button>
         ) : (
           <button
-            className="bg-green-500 p-2 rounded-2xl flex flex-row items-center gap-2 hover:bg-green-600 hover:scale-105 duration-150"
             onClick={() => addFav(selectedFilm)}
+            className="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-all active:scale-95"
           >
-            <img
-              src={Plus}
-              alt="Check"
-              className="w-5 h-5"
-            />
-            Add to favorites
+            <Heart size={18} />
+            <span className="font-medium">Add Favorite</span>
           </button>
         )}
       </div>

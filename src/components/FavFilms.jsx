@@ -1,3 +1,5 @@
+import { Trash2 } from 'lucide-react';
+
 const FavFilms = ({ setSelectedFilm, deleteFav, favorites }) => {
   const sum = favorites.reduce((acc, fav) => acc + fav.vote_average, 0);
   const average = favorites.length > 0 ? sum / favorites.length : 0;
@@ -40,13 +42,14 @@ const FavFilms = ({ setSelectedFilm, deleteFav, favorites }) => {
                 📅{new Date(item.release_date).getFullYear()}
                 <p className="text-sm text-gray-600">⭐ {item.vote_average.toFixed(1)} / 10</p>
                 <button
-                  className="w-20 flex items-center justify-center rounded-full bg-red-200 text-red-600 hover:bg-red-300 cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
                     deleteFav(item.id);
                   }}
+                  className="flex items-center justify-center gap-2 w-30 py-2 px-4 mt-2 border border-red-500 text-red-500 rounded-lg font-medium text-sm transition-all duration-200 hover:bg-red-500 hover:text-white hover:shadow-md active:scale-95"
                 >
-                  Remove
+                  <Trash2 size={18} />
+                  <span className="font-medium">Remove</span>
                 </button>
               </div>
             </li>
